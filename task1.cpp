@@ -41,7 +41,7 @@ void write_to_the_file(s_book *book1){
     return ;
   }
   outfile << book1->address_counter << "\n";
-  int i = 11;
+  int i = book1->address_counter * 4 - 1;
   for (int j = 0; j < book1->address_counter; j++){
     address   adr(std::string(book1->all_addresses[i - 3]),             std::string(book1->all_addresses[i - 2]), atoi(book1->all_addresses[i - 1]), atoi(book1->all_addresses[i]));
 
