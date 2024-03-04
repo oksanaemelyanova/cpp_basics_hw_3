@@ -1,37 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <cstring>
-
-struct  s_book{
-  int address_counter = 0;
-  char **all_addresses;
-  std::string output_address;
-};
-
-class address{
-private:
-  std::string city;
-  std::string street;
-  int house;
-  int apartment;
-
-public:  
-  address(std::string city, std::string street, int house, int apartment) {
-    this->apartment = apartment;
-    this->city = city;
-    this->house = house;
-    this->street = street;
-  };
-
-  std::string get_output_addresses(s_book *book1){
-    std::string  address_string;
-
-    address_string += city + ", " + street + ", " + std::to_string(house) + ", " + std::to_string(apartment);
-    return address_string;
-  }
-};
-
+#include "hw3.hpp"
 
 void write_to_the_file(s_book *book1){ 
   std::ofstream outfile("out.txt");
@@ -72,22 +39,11 @@ void  read_from_the_file(s_book *book1){
   infile.close();
  }
 
-
-
-void free_address_storage(s_book *book1)
-{
-  for (int i = 0; i < book1->address_counter * 4; i++){
-    delete[] book1->all_addresses[i];
-  }
-  delete[] book1->all_addresses;
-}
-
-int main() {
+int task1() {
   s_book    book1;  
   read_from_the_file(&book1);
   
-  write_to_the_file(&book1);
-  
+  write_to_the_file(&book1);  
   
   free_address_storage(&book1);
  
